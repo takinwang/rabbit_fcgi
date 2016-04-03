@@ -1,1 +1,16 @@
-Sample readme file for conjson project.
+rabbit_fcgi
+
+Author: takinwang
+Email : wxz@cnic.cn
+
+If you have any question, please let me known!
+
+
+A simple c++ framework for develop c++ fastcgi applications.
+
+configure nginx with:
+
+        location /covjson { 
+            fastcgi_pass   127.0.0.1:9000;  
+            include        fastcgi_params;
+        }
