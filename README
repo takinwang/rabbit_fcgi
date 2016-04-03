@@ -1,16 +1,46 @@
-rabbit_fcgi
+rabbit_fcgi: 
+	It is a simple, multi-processes, and multi-thread c++11 framework for developing c++ fastcgi applications.
 
 Author: takinwang
 Email : wxz@cnic.cn
 
-If you have any question, please let me known!
+You can use and modify it as you want. 
+If you have any question, please let me known!  
+
+How to use it?
+
+1. add location in nginx.conf:
+
+	location /testcgi { 
+	    fastcgi_pass   127.0.0.1:9000;  
+	    include        fastcgi_params;
+	}
+
+2. change line 30 in src/fcgi.hpp  as the following:
+
+#define nginx_context_path "^/testcgi"
+	
+3. copy src/endp0_impl.hpp to src/test_impl.hpp
+
+   add #include "test_impl.hpp" in the main.cpp like line 27.
+
+   change the namespace endpoint0 to a new namespace what you wanted in src/test_impl.hpp
+   
+   change uri endpoint in line 18 as you want: 
+   		auto & t0 = fcgi::Endpoints[nginx_context_path "/t0.*"];
+   		
+   edit lambda function of "on_call" in src/test_impl.hpp as you want.
+   		[]( fcgi:: request & req, fcgi::response & resp) {
+   		  modify as you want ...
+   		}
+   		
+   see fcgi::request and fcgi::response for details. 
+   		
+see INSTALL to build this project.
+
+How to start it?
+
+./rabbit_fcgi -T 4 -F 4 -d -p 9000
 
 
-A simple c++ framework for develop c++ fastcgi applications.
 
-configure nginx with:
-
-        location /covjson { 
-            fastcgi_pass   127.0.0.1:9000;  
-            include        fastcgi_params;
-        }
