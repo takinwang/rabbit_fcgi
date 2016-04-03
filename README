@@ -1,5 +1,6 @@
 rabbit_fcgi: 
-	It is a simple, multi-processes, and multi-thread c++11 framework for developing c++ fastcgi applications.
+
+It is a simple, multi-processes, and multi-thread c++11 framework for developing c++ fastcgi applications.
 
 Author: takinwang
 Email : wxz@cnic.cn
